@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import petros.efthymiou.groovy.R
 
 import petros.efthymiou.groovy.databinding.PlaylistItemBinding
 
@@ -28,7 +29,7 @@ class MyPlaylistRecyclerViewAdapter(
         val item = values[position]
         holder.playlist_name.text = item.name
         holder.playlist_category.text = item.category
-        holder.playlist_image.setImageResource(item.image)
+        holder.playlist_image.setImageResource(R.mipmap.playlist)
     }
 
     override fun getItemCount(): Int = values.size
