@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_playlist.*
+import kotlinx.android.synthetic.main.fragment_playlist.view.*
 import petros.efthymiou.groovy.R
 import javax.inject.Inject
 
@@ -30,9 +32,16 @@ class PlaylistFragment : Fragment() {
 
         setupViewModel()
 
+        viewModel.loader.observe(this as LifecycleOwner, { loading ->
+            when (loading) {
+                true -> loader.visibility = View.VISIBLE
+                false -> loader.visibility = View.GONE
+            }
+        })
+
         viewModel.playlists.observe(this as LifecycleOwner, { playlists ->
             if (playlists.getOrNull() != null)
-                setupList(view, playlists.getOrNull()!!)
+                setupList(view.playlists_list, playlists.getOrNull()!!)
             else {
                 //TODO: Implement later
             }
